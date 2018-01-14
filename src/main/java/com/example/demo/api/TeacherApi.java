@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.business.TeacherService;
 import com.example.demo.dao.TeacherDao;
 import com.example.demo.dto.TeacherDto;
 import com.example.demo.entity.Lesson;
@@ -20,7 +21,8 @@ import java.util.List;
 public class TeacherApi {
     @Autowired
     private TeacherDao teacherDao;
-
+    @Autowired
+    private TeacherService teacherService;
     @RequestMapping(method = RequestMethod.GET)
     public List<TeacherDto> findAll() {
         List list = new ArrayList<TeacherDto>();
@@ -32,7 +34,7 @@ public class TeacherApi {
     public void creat(@RequestBody TeacherReq teacher) {
         System.out.println("creat in...");
         System.out.println(teacher.toString());
-
+        teacherService.creat(teacher);
         //teacherDao.save(teacher);
     }
 

@@ -14,6 +14,9 @@ public class TeacherReq {
 
     private List<String> lessons = new ArrayList<String>();
 
+
+    String empNo;
+
     String name;
 
     public String getName() {
@@ -26,6 +29,13 @@ public class TeacherReq {
 
     public List<String> getLessons() {
         return lessons;
+    }
+    public String getEmpNo() {
+        return empNo;
+    }
+
+    public void setEmpNo(String empNo) {
+        this.empNo = empNo;
     }
 
     public void setLessons(List<String> lessons) {
@@ -45,10 +55,17 @@ public class TeacherReq {
         this.name = name;
     }
 
+    public TeacherReq(List<String> lessons, String empNo, String name) {
+        this.lessons = lessons;
+        this.empNo = empNo;
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "TeacherReq{" +
                 "lessons=" + lessons +
+                ", empNo='" + empNo + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }
