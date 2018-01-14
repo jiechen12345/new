@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
-import javax.persistence.Column;
+import com.example.demo.entity.Teacher;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;

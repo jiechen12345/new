@@ -1,40 +1,50 @@
 package com.example.demo.api;
 
 import com.example.demo.dao.TeacherDao;
+import com.example.demo.dto.TeacherDto;
 import com.example.demo.entity.Lesson;
 import com.example.demo.entity.Teacher;
+import com.example.demo.request.TeacherReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jiechen on 2017/10/7.
  */
 @RestController
-@RequestMapping("/teachers")
+@CrossOrigin(origins = "*")
+@RequestMapping(value ="/teachers",produces = "application/json")
 public class TeacherApi {
     @Autowired
     private TeacherDao teacherDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Teacher> findAll() {
-        return teacherDao.findAll();
+    public List<TeacherDto> findAll() {
+        List list = new ArrayList<TeacherDto>();
+        list = teacherDao.findAll();
+        return list;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void creat(@RequestBody Teacher teacher) {
-        teacherDao.save(teacher);
+    public void creat(@RequestBody TeacherReq teacher) {
+        System.out.println("creat in...");
+        System.out.println(teacher.toString());
+
+        //teacherDao.save(teacher);
     }
 
-    @RequestMapping(value = "/{id}/lesson", method = RequestMethod.POST)
-    public void creat(@PathVariable String id, @RequestBody List<Lesson> lessonList) {
-        Teacher teacher = teacherDao.findOne(id);
-        for (Lesson lesson : lessonList) {
-            teacher.getLessons().add(lesson);
-        }
-        teacherDao.save(teacher);
-    }
+//    @RequestMapping(value = "/{id}/lesson", met
+// hod = RequestMethod.POST)
+//    public void creat(@PathVariable String id, @RequestBody List<Lesson> lessonList) {
+//        Teacher teacher = teacherDao.findOne(id);
+//        for (Lesson lesson : lessonList) {
+//            teacher.getLessons().add(lesson);
+//        }
+//        teacherDao.save(teacher);
+//    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public void update(@PathVariable String id, @RequestBody Teacher request) {
@@ -61,7 +71,7 @@ public class TeacherApi {
 //            }
 //    }
         teacherDao.save(teacher);
-}
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String id) {

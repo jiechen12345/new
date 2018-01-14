@@ -1,4 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
+
+import com.example.demo.entity.Lesson;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,23 +12,12 @@ import java.util.List;
 /**
  * Created by jiechen on 2017/10/7.
  */
-@Entity
-public class Teacher {
-    @Id
-    String id;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+public class TeacherDto {
+
     private List<Lesson> lessons = new ArrayList<Lesson>();
 
     String name;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -45,11 +36,10 @@ public class Teacher {
     }
 
 
-    public Teacher() {
+    public TeacherDto() {
     }
 
-    public Teacher(String id, String name) {
-        this.id = id;
+    public TeacherDto(String name) {
         this.name = name;
     }
 }
