@@ -20,7 +20,7 @@ import static java.util.stream.Collectors.toList;
  * Created by jiechen on 2018/1/14.
  */
 @Service
-public class TeacherServiceImpl implements TeacherService{
+public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherDao teacherDao;
     @Autowired
@@ -33,21 +33,25 @@ public class TeacherServiceImpl implements TeacherService{
                 .collect(Collectors.toList());
         return teacherDtos;
     }
+
     private TeacherDto getTeacherDto(Teacher teacher) {
-        TeacherDto teacherDto=new TeacherDto();
+        TeacherDto teacherDto = new TeacherDto();
         teacherDto.setName(teacher.getName());
         teacherDto.setId(teacher.getId());
         teacherDto.setLessons(teacher.getLessons());
-        List<Lesson> lessons = teacher.getLessons().stream()
-                .map(it -> {
-                    return (it);
-                })
-                .collect(Collectors.toList());
+        if (teacher.getLessons() == null) {
+            List<Lesson> lessons = new ArrayList<>();
+            for (Lesson it : teacher.getLessons()) {
+                lessons.add(it);
+            }
+            teacherDto.setLessons(lessons);
+        }
         return teacherDto;
     }
+
     @Override
     public void creat(TeacherReq teacherReq) {
-        Teacher teacher=new Teacher();
+        Teacher teacher = new Teacher();
         teacher.setId(teacherReq.getid());
         teacher.setName(teacherReq.getName());
         List<Lesson> lessons = teacherReq.getLessons().stream()
