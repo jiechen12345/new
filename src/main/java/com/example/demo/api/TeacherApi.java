@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by jiechen on 2017/10/7.
@@ -23,19 +24,18 @@ public class TeacherApi {
     private TeacherDao teacherDao;
     @Autowired
     private TeacherService teacherService;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<TeacherDto> findAll() {
-        List list = new ArrayList<TeacherDto>();
-        list = teacherDao.findAll();
-        return list;
+       return teacherService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void creat(@RequestBody TeacherReq teacher) {
-        System.out.println("creat in...");
+    public String creat(@RequestBody TeacherReq teacher) {
         System.out.println(teacher.toString());
         teacherService.creat(teacher);
         //teacherDao.save(teacher);
+        return "creat OK";
     }
 
 //    @RequestMapping(value = "/{id}/lesson", met

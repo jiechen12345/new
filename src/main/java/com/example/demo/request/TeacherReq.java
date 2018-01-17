@@ -15,7 +15,7 @@ public class TeacherReq {
     private List<String> lessons = new ArrayList<String>();
 
 
-    String empNo;
+    String id;
 
     String name;
 
@@ -30,12 +30,12 @@ public class TeacherReq {
     public List<String> getLessons() {
         return lessons;
     }
-    public String getEmpNo() {
-        return empNo;
+    public String getid() {
+        return id;
     }
 
-    public void setEmpNo(String empNo) {
-        this.empNo = empNo;
+    public void setid(String id) {
+        this.id = id;
     }
 
     public void setLessons(List<String> lessons) {
@@ -55,9 +55,9 @@ public class TeacherReq {
         this.name = name;
     }
 
-    public TeacherReq(List<String> lessons, String empNo, String name) {
+    public TeacherReq(List<String> lessons, String id, String name) {
         this.lessons = lessons;
-        this.empNo = empNo;
+        this.id = id;
         this.name = name;
     }
 
@@ -65,7 +65,7 @@ public class TeacherReq {
     public String toString() {
         return "TeacherReq{" +
                 "lessons=" + lessons +
-                ", empNo='" + empNo + '\'' +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

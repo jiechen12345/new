@@ -25,20 +25,40 @@ public class TeacherServiceImpl implements TeacherService{
     private TeacherDao teacherDao;
     @Autowired
     private LessonDao lessonDao;
+
+    @Override
+    public List<TeacherDto> findAll() {
+        List<TeacherDto> teacherDtos = teacherDao.findAll().stream()
+                .map(this::getTeacherDto)
+                .collect(Collectors.toList());
+        return teacherDtos;
+    }
+    private TeacherDto getTeacherDto(Teacher teacher) {
+        TeacherDto teacherDto=new TeacherDto();
+        teacherDto.setName(teacher.getName());
+        teacherDto.setId(teacher.getId());
+        teacherDto.setLessons(teacher.getLessons());
+        List<Lesson> lessons = teacher.getLessons().stream()
+                .map(it -> {
+                    return (it);
+                })
+                .collect(Collectors.toList());
+        return teacherDto;
+    }
     @Override
     public void creat(TeacherReq teacherReq) {
         Teacher teacher=new Teacher();
-        teacher.setId(teacherReq.getEmpNo());
+        teacher.setId(teacherReq.getid());
         teacher.setName(teacherReq.getName());
-
-         List<Lesson> lessons = teacherReq.getLessons().stream()
-                .map(it -> lessonDao.findOne(it))
-                .collect(Collectors.toList());
-/*
-         List<Lesson> lessons1 = teacherReq.getLessons().stream()
+        List<Lesson> lessons = teacherReq.getLessons().stream()
                 .map(it -> {
                     return lessonDao.findOne(it);
                 })
+                .collect(Collectors.toList());
+
+/*
+       List<Lesson> lessons = teacherReq.getLessons().stream()
+                .map(it -> lessonDao.findOne(it))
                 .collect(Collectors.toList());
 
         List<Lesson> lessons2 = new ArrayList<>();

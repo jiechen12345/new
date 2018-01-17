@@ -52,4 +52,10 @@ public class Teacher {
         this.id = id;
         this.name = name;
     }
+
+    public Teacher(String id, List<Lesson> lessons, String name) {
+        this.id = id;
+        this.lessons = lessons;
+        this.name = name;
+    }
 }
