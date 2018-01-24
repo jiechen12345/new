@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -38,14 +39,7 @@ public class TeacherServiceImpl implements TeacherService {
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setName(teacher.getName());
         teacherDto.setId(teacher.getId());
-        teacherDto.setLessons(teacher.getLessons());
-        if (teacher.getLessons() == null) {
-            List<Lesson> lessons = new ArrayList<>();
-            for (Lesson it : teacher.getLessons()) {
-                lessons.add(it);
-            }
-            teacherDto.setLessons(lessons);
-        }
+        teacherDto.setLessons(teacher.getLessons().stream().map(it -> it.getName()).collect(toList()));
         return teacherDto;
     }
 
@@ -73,10 +67,19 @@ public class TeacherServiceImpl implements TeacherService {
   */
         teacher.setLessons(lessons);
         teacherDao.save(teacher);
+        findAll();
     }
 
     @Override
-    public void update(String id, Teacher request) {
-
+    public void update(String id, TeacherReq teacherReq) {
+        Teacher teacher = teacherDao.findOne(id);
+        teacher.setName(teacherReq.getName());
+        teacher.setLessons( teacherReq.getLessons().stream().map(it -> lessonDao.findOne(it)).collect(toList()));
+        teacherDao.save(teacher);
+    }
+    @Override
+    public void delete(String id) {
+        Teacher teacher = teacherDao.findOne(id);
+        teacherDao.delete(teacher);
     }
 }

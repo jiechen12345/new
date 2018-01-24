@@ -31,11 +31,10 @@ public class TeacherApi {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String creat(@RequestBody TeacherReq teacher) {
+    public List<TeacherDto> creat(@RequestBody TeacherReq teacher) {
         System.out.println(teacher.toString());
         teacherService.creat(teacher);
-        //teacherDao.save(teacher);
-        return "creat OK";
+        return teacherService.findAll();
     }
 
 //    @RequestMapping(value = "/{id}/lesson", met
@@ -49,11 +48,9 @@ public class TeacherApi {
 //    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void update(@PathVariable String id, @RequestBody Teacher request) {
-        Teacher teacher = teacherDao.findOne(id);
-        teacher.setName(request.getName());
-        teacher.setLessons(request.getLessons());
-        teacherDao.save(teacher);
+    public List<TeacherDto> update(@PathVariable String id, @RequestBody TeacherReq teacherReq) {
+        teacherService.update(id,teacherReq);
+        return teacherService.findAll();
     }
 
     @RequestMapping(value = "/{id}/lesson", method = RequestMethod.PUT)
@@ -76,8 +73,10 @@ public class TeacherApi {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable String id) {
-        Teacher teacher = teacherDao.findOne(id);
-        teacherDao.delete(teacher);
+    public List<TeacherDto> delete(@PathVariable String id) {
+        //Teacher teacher = teacherDao.findOne(id);
+        //teacherDao.delete(teacher);
+        teacherService.delete(id);
+        return teacherService.findAll();
     }
 }
