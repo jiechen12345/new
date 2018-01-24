@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,7 +10,6 @@
     <script src="scripts/jquery.json-viewer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
-
     </script>
 </head>
 <body>
@@ -108,7 +107,6 @@
                                 <option value="roiPriodEsbProcessor">查詢投資帳戶總覽損益分析資料（ESB）</option>
                                 <option value="roiListEsbProcessor">查詢投資帳戶總覽目前持有部位（ESB）</option>
                             </optgroup>
-
                         </select>
                     </div>
                         -->
@@ -128,10 +126,7 @@
 <div id="loadingMask" class="loading-mask"> </div>
 
 <script>
-
-
     (function (global) {
-
         var loadingMask = (function () {
             var $loadingMask = $('#loadingMask');
             return {
@@ -143,17 +138,14 @@
                 }
             };
         })();
-
         var $viwer = $('#viwer');
         var $lastTime = $('#labLastTime');
-
         //insert---------------------------------
         $('#btnC').on('click', function () {
             var name = $('#name').val();
             var id = $('#id').val();
             alert(id);
             alert(name);
-
             //var lessons = $('#lessons').val();
             //var lessons=[{"id":"1"},{"id":"2"}];
             //var lessons=["1","3"];
@@ -176,9 +168,7 @@
             }).fail(function (xhr) {
                 $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
-
         });
-
         //query----------------------------------
         $('#btnR').on('click', function () {
             var reqUrl = getUrl();
@@ -200,7 +190,6 @@
                 $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
         });
-
         //Delete-----------------------------------------------------
         $('#btnD').on('click', function () {
             var key = $('#key').val();
@@ -222,9 +211,7 @@
             }).fail(function (xhr) {
                 $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
-
         });
-
         //update---------------------------------
         $('#btnU').on('click', function () {
             var name = $('#name').val();
@@ -252,9 +239,7 @@
             }).fail(function (xhr) {
                 $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
-
         });
-
         $('#envList').on('change', function () {
             var url = getDomain() + '/sysInfo/apiVer';
             $.ajax({
@@ -266,17 +251,12 @@
             }).fail(function () {
                 $('#labApiVer').text('Version：unknown');
             });
-
         }).trigger('change');
-
         function getRespList(list) {
-
             alert("123");
             return "list";
         }
-
         function getUrl() {
-
             //var api = $('#apiList').val();
             var reqUrl = '';
             //reqUrl += getDomain();
@@ -286,7 +266,6 @@
             return reqUrl;
         }
         function getUrl2(parameter) {
-
             var api = parameter;
             var reqUrl = '';
             //reqUrl += getDomain();
@@ -301,7 +280,6 @@
             domain += '0' === env ? 'localhost:8772' : '61.65.14.164:8081/financeInquiry';
             return domain;
         }
-
         function getLessons() {
             var arr=[];
             if(document.getElementById("lessons1").checked){
@@ -318,7 +296,6 @@
             };
             return arr;
         }
-
     })(window);
     var app = new Vue({
         el:'#changCurr',
@@ -328,7 +305,6 @@
             twd:0,
             showTip:true
         }
-
     })
 </script>
 
