@@ -30,6 +30,11 @@ public class TeacherApi {
        return teacherService.findAll();
     }
 
+    @RequestMapping(value = "/search" ,method = RequestMethod.POST)
+    public List<TeacherDto> find(@RequestBody TeacherReq q_teacher) {
+        System.out.println(q_teacher.toString());
+        return teacherService.find(q_teacher);
+    }
     @RequestMapping(method = RequestMethod.POST)
     public List<TeacherDto> creat(@RequestBody TeacherReq teacher) {
         System.out.println(teacher.toString());

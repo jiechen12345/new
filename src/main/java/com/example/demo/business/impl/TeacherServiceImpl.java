@@ -10,8 +10,12 @@ import com.example.demo.request.TeacherReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,6 +39,31 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherDtos;
     }
 
+    @Override
+    public List<TeacherDto> find(TeacherReq request) {
+        List<TeacherDto> teacherDtos = teacherDao
+                .findAll((root, query, cb) -> {
+                    query.orderBy(cb.desc(root.get("id")));
+                    List<Predicate> predicates = new LinkedList<>();
+                    Optional.ofNullable(request.getid()).ifPresent(id -> {
+                        predicates.add(cb.equal(root.get("id"), id));
+                    });
+                    Optional.ofNullable(request.getName()).ifPresent(name -> {
+                        predicates.add(cb.equal(root.get("name"), name));
+                    });
+                    Optional.ofNullable(request.getLessons()).ifPresent(lessons -> {
+                        if (!lessons.isEmpty()) {
+                            predicates.add(root.get("lessons").in(lessons));
+                        }
+                    });
+                    return cb.and(predicates.toArray(new Predicate[predicates.size()]));
+                })
+                .stream()
+                .map(this::getTeacherDto)
+                .collect(Collectors.toList());
+        return teacherDtos;
+    }
+
     private TeacherDto getTeacherDto(Teacher teacher) {
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setName(teacher.getName());
@@ -45,6 +74,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public void creat(TeacherReq teacherReq) {
+
         Teacher teacher = new Teacher();
         teacher.setId(teacherReq.getid());
         teacher.setName(teacherReq.getName());

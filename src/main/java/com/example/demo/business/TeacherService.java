@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface TeacherService {
     List<TeacherDto> findAll();
+    List<TeacherDto> find(TeacherReq q_teacherReq);
     void creat(TeacherReq teacherReq);
     void update(String id,TeacherReq request);
     void delete(String id);
