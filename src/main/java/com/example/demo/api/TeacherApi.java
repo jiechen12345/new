@@ -6,6 +6,8 @@ import com.example.demo.dto.TeacherDto;
 import com.example.demo.entity.Lesson;
 import com.example.demo.entity.Teacher;
 import com.example.demo.request.TeacherReq;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*")
 @RequestMapping(value ="/teachers",produces = "application/json")
 public class TeacherApi {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeacherApi.class);
     @Autowired
     private TeacherDao teacherDao;
     @Autowired

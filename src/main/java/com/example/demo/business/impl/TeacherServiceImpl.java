@@ -1,5 +1,6 @@
 package com.example.demo.business.impl;
 
+import com.example.demo.api.TeacherApi;
 import com.example.demo.business.TeacherService;
 import com.example.demo.dao.LessonDao;
 import com.example.demo.dao.TeacherDao;
@@ -7,6 +8,7 @@ import com.example.demo.dto.TeacherDto;
 import com.example.demo.entity.Lesson;
 import com.example.demo.entity.Teacher;
 import com.example.demo.request.TeacherReq;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,6 +29,7 @@ import static java.util.stream.Collectors.toList;
  */
 @Service
 public class TeacherServiceImpl implements TeacherService {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(TeacherServiceImpl.class);
     @Autowired
     private TeacherDao teacherDao;
     @Autowired
@@ -41,26 +45,44 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<TeacherDto> find(TeacherReq request) {
-        List<TeacherDto> teacherDtos = teacherDao
+        List<TeacherDto> teacherDtos = new ArrayList<>();
+        List list=new ArrayList();
+        for (Teacher teacher : teacherDao
                 .findAll((root, query, cb) -> {
                     query.orderBy(cb.desc(root.get("id")));
                     List<Predicate> predicates = new LinkedList<>();
-                    Optional.ofNullable(request.getid()).ifPresent(id -> {
+                    Optional.ofNullable(request.getid()).filter(it -> !it.isEmpty()).ifPresent(id -> {
                         predicates.add(cb.equal(root.get("id"), id));
                     });
-                    Optional.ofNullable(request.getName()).ifPresent(name -> {
+
+                    Optional.ofNullable(request.getName()).filter(it -> !it.isEmpty()).ifPresent(name -> {
                         predicates.add(cb.equal(root.get("name"), name));
                     });
-                    Optional.ofNullable(request.getLessons()).ifPresent(lessons -> {
-                        if (!lessons.isEmpty()) {
-                            predicates.add(root.get("lessons").in(lessons));
+                    /*
+                    String name = Optional.ofNullable(foo).map(Foo::getBat).map(Bat::getId).map(Id::getName).orElse("");
+                    String s = null;
+                    if (foo != null && foo.getBat() != null && foo.getBat.getId() != null) {
+                        s = foo.getBat.getId()
+                    }
+                    */
+                    Optional.ofNullable(request.getLessons()).ifPresent(lessonReq -> {
+                        if (!lessonReq.isEmpty()) {
+                            List<Lesson> lessons = lessonReq.stream()
+                                    .map(it -> {
+                                        return lessonDao.findOne(it);
+                                    })
+                                    .collect(Collectors.toList());
+
+                            list.add("1");
+                            list.add("2");
+                            predicates.add(root.get("lessons").in(list));
                         }
                     });
                     return cb.and(predicates.toArray(new Predicate[predicates.size()]));
-                })
-                .stream()
-                .map(this::getTeacherDto)
-                .collect(Collectors.toList());
+                })) {
+            TeacherDto teacherDto = getTeacherDto(teacher);
+            teacherDtos.add(teacherDto);
+        }
         return teacherDtos;
     }
 
