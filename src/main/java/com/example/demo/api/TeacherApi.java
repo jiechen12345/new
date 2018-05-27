@@ -22,7 +22,9 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*")
 @RequestMapping(value ="/teachers",produces = "application/json")
 public class TeacherApi {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TeacherApi.class);
+    //private static final Logger LOGGER = LoggerFactory.getLogger(TeacherApi.class);
+    Logger LOGGER = LoggerFactory.getLogger(TeacherApi.class);
+
     @Autowired
     private TeacherDao teacherDao;
     @Autowired
@@ -30,6 +32,10 @@ public class TeacherApi {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<TeacherDto> findAll() {
+        LOGGER.debug("123");
+        LOGGER.info("456");
+        LOGGER.warn("789");
+        LOGGER.error("10");
        return teacherService.findAll();
     }
 
