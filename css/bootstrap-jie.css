@@ -1,0 +1,36 @@
+body{
+  font-family: "PMingLiU ", sans-serif;
+}
+.navbar-default  {
+  color: #777;
+  border: none;
+  box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);
+}
+.navbar-default .navbar-brand {
+  font-size: 20px;
+  font-weight: bold;
+  color: orangered;
+}
+.navbar-default .navbar-toggle {
+  border-color: #ff4a0740;
+  background-color: rgba(255, 232, 232, 0.68);
+  transform: translateY(50%);
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fe632a;
+  transform: translateY(30%);
+}
+.navbar-default .navbar-nav>li>a {
+  color: #ea602f;
+  transform: translateY(30%);
+}
+.navbar-brand>img {
+  width: 162px;
+  height: 62px;
+  border: 0;
+  transform: translateY(-10%);
+
+}
+.container-fluid{
+  height: 87px
+}
