@@ -15,24 +15,16 @@ import java.util.List;
 
 public class TeacherDto {
 
+
     public TeacherDto() {
     }
 
-    public TeacherDto(String name) {
-        this.name = name;
-    }
-
-    public TeacherDto(List<Lesson> lessons, String name, String id) {
-        this.lessons = lessons;
-        this.name = name;
-        this.id = id;
-    }
-
-    private List<Lesson> lessons = new ArrayList<Lesson>();
+    String id;
 
     String name;
 
-    String id;
+    private List<String> lessons = new ArrayList<String>();
+
     public String getName() {
         return name;
     }
@@ -41,11 +33,11 @@ public class TeacherDto {
         this.name = name;
     }
 
-    public List<Lesson> getLessons() {
+    public List<String> getLessons() {
         return lessons;
     }
 
-    public void setLessons(List<Lesson> lessons) {
+    public void setLessons(List<String> lessons) {
         this.lessons = lessons;
     }
 
@@ -57,5 +49,13 @@ public class TeacherDto {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "TeacherDto{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", lessons=" + lessons +
+                '}';
+    }
 
 }
