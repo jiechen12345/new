@@ -10,6 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by JieChen on 2018/5/14.
  */
+
 public interface UserService {
     ArrayList<User> queryUserList();
     ArrayList<User> queryUserListOrderDesc();

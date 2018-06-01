@@ -1,16 +1,20 @@
 package com.example.demo.api;
 
+import com.example.demo.annotation.Action;
 import com.example.demo.business.TeacherService;
 import com.example.demo.dao.TeacherDao;
 import com.example.demo.dto.TeacherDto;
 import com.example.demo.entity.Lesson;
 import com.example.demo.entity.Teacher;
 import com.example.demo.request.TeacherReq;
+import javafx.application.Application;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +35,7 @@ public class TeacherApi {
     private TeacherService teacherService;
 
     @RequestMapping(method = RequestMethod.GET)
+    @Action("findAll")
     public List<TeacherDto> findAll() {
         LOGGER.debug("123");
         LOGGER.info("456");

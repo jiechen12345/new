@@ -1,5 +1,6 @@
 package com.example.demo.business.impl;
 
+import com.example.demo.annotation.Action;
 import com.example.demo.api.TeacherApi;
 import com.example.demo.business.TeacherService;
 import com.example.demo.dao.LessonDao;
@@ -10,6 +11,7 @@ import com.example.demo.entity.Teacher;
 import com.example.demo.request.TeacherReq;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Join;
@@ -45,6 +47,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Action("find2")
     public List<TeacherDto> find(TeacherReq request) {
         List<TeacherDto> teacherDtos = new ArrayList<>();
         List list=new ArrayList();
@@ -74,8 +77,6 @@ public class TeacherServiceImpl implements TeacherService {
                                     })
                                     .collect(Collectors.toList());
 
-                            list.add("1");
-                            list.add("2");
                             predicates.add(root.get("lessons").in(list));
                         }
                     });
