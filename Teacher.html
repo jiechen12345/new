@@ -1,52 +1,23 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="x-ua-compatible" content="IE=edge"><!--在IE8環境開啟渲染模式-->
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"> <!--縮放比例1   user可否自己縮放no-->
+    <meta charset="utf-8" />
     <title></title>
-    <link href="css/main.css?v=20161231" rel="stylesheet"/>
-    <link href="css/jquery.json-viewer.css.css" rel="stylesheet"/>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-jie.css" rel="stylesheet">
-    <script src="scripts/jquery-3.1.1.js"></script>
-    <script src="scripts/jquery.json-viewer.js"></script>
+    <link href="../../Users/user/Desktop/FinanceInquiryToolV1.04/FinanceInquiryToolV1.04/css/main.css?v=20161231" rel="stylesheet" />
+    <link href="../../Users/user/Desktop/FinanceInquiryToolV1.04/FinanceInquiryToolV1.04/css/jquery.json-viewer.css.css" rel="stylesheet" />
+    <script src="../../Users/user/Desktop/FinanceInquiryToolV1.04/FinanceInquiryToolV1.04/scripts/jquery-3.1.1.js"></script>
+    <script src="../../Users/user/Desktop/FinanceInquiryToolV1.04/FinanceInquiryToolV1.04/scripts/jquery.json-viewer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="scripts/bootstrap.min.js"></script>
     <script>
     </script>
 </head>
 <body>
-<!--導航-->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <!-- 小視窗按鈕 和LOGO-->
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="index.html" class="navbar-brand">
-                <img src="src/main/resources/img/bestway_travel.png">
-            </a>
-        </div>
-        <!--導航-->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="index.html" class="navbar-brand">訊息管理</a></li>
-                <li><a href="index.html" class="navbar-brand">帳號管理</a></li>
-                <li><a href="index.html" class="navbar-brand">訂單管理</a></li>
-                <li><a href="index.html" class="navbar-brand">帳務管理</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <div class="center">
     <div class="header">
-        <h2 class="title">資料維護</h2>
+        <h2 class="title">師資料維護</h2>
     </div>
+
 
 
     <div style="text-align:center;height:24px;">
@@ -61,13 +32,13 @@
                     <input type="text" v-model="twd">
                 </div>
                 <div id='JP' class="fnContainer">
-                    <label>JPY :</label>
+                    <label>JPY	:</label>
                     {{twd / JPY}}
                     <div class="fnContainer" v-show="showTip" v-if="JPY<0.28">請買進!!</div>
                     <div class="fnContainer" v-show="showTip" v-if="JPY>0.30">請賣出!!</div>
                 </div>
                 <div id='US' class="fnContainer">
-                    <label>USD :</label>
+                    <label>USD	:</label>
                     {{twd / USD}}
                     <div class="fnContainer" v-show="showTip" v-if="USD<28.0">請買進!!</div>
                     <div class="fnContainer" v-show="showTip" v-if="USD>30.0">請賣出!!</div>
@@ -92,66 +63,91 @@
                 <label>KEY:</label>
                 <input type="text" id="key">
             </div>
+			<div class="fnContainer">查詢 ----------!!
+			<div class="qContainer"></div>
+			<div class="qContainer">
+                <label class="qContainer">職員編號:</label>
+                <input type="text" id="q_id">
+            </div>
+			<div class="qContainer">
+                <label class="qContainer">老師名稱:</label>
+                <input type="text" id="q_name">
+            </div>
+			<div class="qContainer">
+                <label class="qContainer">負責教學課程:</label><br>
+				<input class="qContainer" type="checkbox" name="q_lessons1" id="q_lessons1" value="1"> 數學<br>
+                <input class="qContainer" type="checkbox" name="q_lessons2" id="q_lessons2" value="2"> 國文<br>
+                <input class="qContainer" type="checkbox" name="q_lessons3" id="q_lessons3" value="3"> 地理<br>
+                <input class="qContainer" type="checkbox" name="q_lessons4" id="q_lessons4" value="4"> 歷史<br>
+            </div>
+			<div class="qContainer">
+                        <label>排序</label>
+                        <select id="order">
+							<option value="id">職員編號</option>
+                            <option value="name">老師名稱</option>
+                            <option value="lesson">教學課程</option>
+						</select>	
+			</div>
             <div class="fnContainer">
                 <button id="btnR">查詢ALL</button>
-                <button id="btnR2">查詢</button>
+				<button id="btnR2">查詢</button>
                 <button id="btnC">新增</button>
                 <button id="btnU">修改</button>
                 <button id="btnD">刪除</button>
             </div>
-    </div>
-    <!--
+			</div>
+            <!--
+                    <div class="fnContainer">
+                        <label>Api：</label>
+                        <select id="apiList">
+                            <option value="customerInfoProcessor">基本資料</option>
+                            <optgroup label="個人總覽">
+                                <option value="assetsOverviewProcessor">資產總覽</option>
+                                <option value="assetsDistributionProcessor">資產配置</option>
+                                <option value="savingAccountInfoProcessor">存款</option>
+                                <option value="fundSummaryProcessor">基金-總覽</option>
+                                <option value="fundOverviewProcessor">基金-概要</option>
+                                <option value="fundRedempProcessor">基金-贖回</option>
+                                <option value="etfSummaryProcessor">ETF-總覽</option>
+                                <option value="etfOverviewProcessor">ETF-概要</option>
+                                <option value="etfRedempProcessor">ETF-贖回</option>
+                                <option value="snBondSummaryProcessor">SN/Bond-總覽</option>
+                                <option value="snBondOverviewProcessor">SN/Bond-概要</option>
+                                <option value="snBondRedempProcessor">SN/Bond-贖回</option>
+                                <option value="insuranceProcessor">保險</option>
+                                <option value="goldenAccountSummaryProcessor">黃金存摺</option>
+                                <option value="goldenAccountDetailProcessor">黃金存摺明細</option>
+                                <option value="equityProcessor">Equity</option>
+                                <option value="structuredProdcutProcessor">SI</option>
+                                <option value="dciProcessor">DCI</option>
+                                <option value="dicDetailProcessor">DCI-到期查詢</option>
+                                <option value="fundDetailProcess">基金總攬明細合併</option>
+                                <option value="fundOverviewEsbProcessor">基金-概要（ESB）</option>
+                                <option value="etfOverviewEsbProcessor">ETF-概要（ESB）</option>
+                                <option value="snBondOverviewEsbProcessor">Bond-概要（ESB）</option>
+                                <option value="fundSummaryEsbProcessor">基金-總覽（ESB）</option>
+                                <option value="snBondSummaryEsbProcessor">Bond-總覽（ESB）</option>
+                                <option value="etfSummaryEsbProcessor">ETF-總覽（ESB）</option>
+                                <option value="fundRedeemEsbProcessor">基金-贖回（ESB）</option>
+                                <option value="etfRedeemEsbProcessor">ETF-贖回（ESB）</option>
+                                <option value="equityEsbProcessor">Equity（ESB）</option>
+                                <option value="roiPriodEsbProcessor">查詢投資帳戶總覽損益分析資料（ESB）</option>
+                                <option value="roiListEsbProcessor">查詢投資帳戶總覽目前持有部位（ESB）</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                        -->
             <div class="fnContainer">
-                <label>Api：</label>
-                <select id="apiList">
-                    <option value="customerInfoProcessor">基本資料</option>
-                    <optgroup label="個人總覽">
-                        <option value="assetsOverviewProcessor">資產總覽</option>
-                        <option value="assetsDistributionProcessor">資產配置</option>
-                        <option value="savingAccountInfoProcessor">存款</option>
-                        <option value="fundSummaryProcessor">基金-總覽</option>
-                        <option value="fundOverviewProcessor">基金-概要</option>
-                        <option value="fundRedempProcessor">基金-贖回</option>
-                        <option value="etfSummaryProcessor">ETF-總覽</option>
-                        <option value="etfOverviewProcessor">ETF-概要</option>
-                        <option value="etfRedempProcessor">ETF-贖回</option>
-                        <option value="snBondSummaryProcessor">SN/Bond-總覽</option>
-                        <option value="snBondOverviewProcessor">SN/Bond-概要</option>
-                        <option value="snBondRedempProcessor">SN/Bond-贖回</option>
-                        <option value="insuranceProcessor">保險</option>
-                        <option value="goldenAccountSummaryProcessor">黃金存摺</option>
-                        <option value="goldenAccountDetailProcessor">黃金存摺明細</option>
-                        <option value="equityProcessor">Equity</option>
-                        <option value="structuredProdcutProcessor">SI</option>
-                        <option value="dciProcessor">DCI</option>
-                        <option value="dicDetailProcessor">DCI-到期查詢</option>
-                        <option value="fundDetailProcess">基金總攬明細合併</option>
-                        <option value="fundOverviewEsbProcessor">基金-概要（ESB）</option>
-                        <option value="etfOverviewEsbProcessor">ETF-概要（ESB）</option>
-                        <option value="snBondOverviewEsbProcessor">Bond-概要（ESB）</option>
-                        <option value="fundSummaryEsbProcessor">基金-總覽（ESB）</option>
-                        <option value="snBondSummaryEsbProcessor">Bond-總覽（ESB）</option>
-                        <option value="etfSummaryEsbProcessor">ETF-總覽（ESB）</option>
-                        <option value="fundRedeemEsbProcessor">基金-贖回（ESB）</option>
-                        <option value="etfRedeemEsbProcessor">ETF-贖回（ESB）</option>
-                        <option value="equityEsbProcessor">Equity（ESB）</option>
-                        <option value="roiPriodEsbProcessor">查詢投資帳戶總覽損益分析資料（ESB）</option>
-                        <option value="roiListEsbProcessor">查詢投資帳戶總覽目前持有部位（ESB）</option>
-                    </optgroup>
-                </select>
+                <label>LastUpdated：</label>
+                <span id="labLastTime"></span>
             </div>
-                -->
-    <div class="fnContainer">
-        <label>LastUpdated：</label>
-        <span id="labLastTime"></span>
-    </div>
-    </section>
+        </section>
 
-    <div class="viwer-container">
-        <div id="viwer">  </div>
-    </div>
+        <div class="viwer-container">
+            <div id="viwer">  </div>
+        </div>
 
-</div>
+    </div>
 </div>
 
 <div id="loadingMask" class="loading-mask"> </div>
@@ -219,18 +215,18 @@
                 $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
         });
-        //query2----------------------------------
+		//query2----------------------------------
         $('#btnR2').on('click', function () {
             var reqUrl = getUrl();
-            reqUrl+="/search";
-            var q_name = $('#q_name').val();
-            var q_id = $('#q_id').val();
-            var q_lessons=getQ_lessons();
-            var q_order=$('#order').val();
-            alert(q_id);
+			reqUrl+="/search";
+			var q_name = $('#q_name').val();
+			var q_id = $('#q_id').val();
+			var q_lessons=getQ_lessons();
+			var q_order=$('#order').val();
+			alert(q_id);
             alert(q_name);
-            alert(q_lessons);
-            alert(q_order);
+			alert(q_lessons);
+			alert(q_order);
             $.ajax({
                 contentType: 'application/json; charset=UTF-8',
                 url: reqUrl,
@@ -248,56 +244,55 @@
                 $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
         });
-
+		
         //Delete-----------------------------------------------------
         $('#btnD').on('click', function () {
             var key = $('#key').val();
-            alert("d: " + key);
+            alert("d: "+key);
             var reqUrl = getUrl2(key);
             $.ajax({
                 contentType: 'application/json; charset=UTF-8',
                 url: reqUrl,
-                data: '',
+                data: '' ,
                 method: 'DELETE',
                 dataType: 'json',
                 beforeSend: loadingMask.show,
                 complete: loadingMask.hide
             }).done(function (resp) {
-                $viwer.jsonViewer(resp, {collapsed: false, withQuotes: false});
-                $viwer.parent().animate({scrollTop: 0}, '500', 'swing');
+                $viwer.jsonViewer(resp, { collapsed: false, withQuotes: false });
+                $viwer.parent().animate({ scrollTop: 0 }, '500', 'swing');
                 var now = new Date();
                 $lastTime.text(now.toJSON());
             }).fail(function (xhr) {
-                $viwer.jsonViewer(xhr.responseText, {collapsed: false, withQuotes: false});
+                $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
         });
         //update---------------------------------
         $('#btnU').on('click', function () {
             var name = $('#name').val();
             var id = $('#id').val();
-            var lessons = getLessons();
+            var lessons=getLessons();
             alert(id);
             alert(name);
             alert(lessons);
             var key = $('#key').val();
-            alert("KEY U: " + key);
-            var reqUrl = getUrl2(key);
-            ;
+            alert("KEY U: "+key);
+            var reqUrl = getUrl2(key);;
             $.ajax({
                 contentType: 'application/json; charset=UTF-8',
                 url: reqUrl,
-                data: JSON.stringify({"id": id, "name": name, "lessons": lessons}),
+                data: JSON.stringify({"id": id,"name": name,"lessons": lessons}) ,
                 method: 'PUT',
                 dataType: 'json',
                 beforeSend: loadingMask.show,
                 complete: loadingMask.hide
             }).done(function (resp) {
-                $viwer.jsonViewer(resp, {collapsed: false, withQuotes: false});
-                $viwer.parent().animate({scrollTop: 0}, '500', 'swing');
+                $viwer.jsonViewer(resp, { collapsed: false, withQuotes: false });
+                $viwer.parent().animate({ scrollTop: 0 }, '500', 'swing');
                 var now = new Date();
                 $lastTime.text(now.toJSON());
             }).fail(function (xhr) {
-                $viwer.jsonViewer(xhr.responseText, {collapsed: false, withQuotes: false});
+                $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
         });
         $('#envList').on('change', function () {
@@ -312,12 +307,10 @@
                 $('#labApiVer').text('Version：unknown');
             });
         }).trigger('change');
-
         function getRespList(list) {
             alert("123");
             return "list";
         }
-
         function getUrl() {
             //var api = $('#apiList').val();
             var reqUrl = '';
@@ -327,45 +320,38 @@
             //reqUrl += '/' + now.getTime().toString();
             return reqUrl;
         }
-
         function getUrl2(parameter) {
-            var api = parameter;
+            var key = parameter;
             var reqUrl = '';
             //reqUrl += getDomain();
-            reqUrl += 'http://localhost:8080/teachers/' + api;
+            reqUrl += 'http://localhost:8088/teachers/'+ key;
             //var now = new Date();
             //reqUrl += '/' + now.getTime().toString();
             return reqUrl;
         }
-
         function getDomain() {
             var env = $('#envList').val();
             var domain = 'http://';
             domain += '0' === env ? 'localhost:8772' : '61.65.14.164:8081/financeInquiry';
             return domain;
         }
-
         function getLessons() {
-            var arr = [];
-            if (document.getElementById("lessons1").checked) {
+            var arr=[];
+            if(document.getElementById("lessons1").checked){
                 arr.push("1");
-            }
-            ;
-            if (document.getElementById("lessons2").checked) {
+            };
+            if(document.getElementById("lessons2").checked){
                 arr.push("2")
-            }
-            ;
-            if (document.getElementById("lessons3").checked) {
+            };
+            if(document.getElementById("lessons3").checked){
                 arr.push("3")
-            }
-            ;
-            if (document.getElementById("lessons4").checked) {
+            };
+            if(document.getElementById("lessons4").checked){
                 arr.push("4")
-            }
-            ;
+            };
             return arr;
         }
-        function getQ_lessons() {
+		function getQ_lessons() {
             var arr=[];
             if(document.getElementById("q_lessons1").checked){
                 arr.push("1");
@@ -383,12 +369,12 @@
         }
     })(window);
     var app = new Vue({
-        el: '#changCurr',
-        data: {
-            JPY: 0.21,
-            USD: 42.0,
-            twd: 0,
-            showTip: true
+        el:'#changCurr',
+        data:{
+            JPY:0.21,
+            USD:42.0,
+            twd:0,
+            showTip:true
         }
     })
 </script>

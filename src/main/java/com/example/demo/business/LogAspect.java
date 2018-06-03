@@ -6,6 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -17,16 +18,19 @@ import java.util.concurrent.ExecutionException;
  * Created by JieChen on 2018/5/28.
  */
 //宣告他是AOP
+@Order(1)//代表優先級最高
 @Aspect
 @Component
 public class LogAspect {
 
     // pointCut
-    @Pointcut("@annotation(com.example.demo.annotation.Action)")
+    @Pointcut("execution(@com.example.demo.annotation.Action * *(..))")
+    //@Pointcut("@annotation(com.example.demo.annotation.Action)")
     public void log() {
         System.out.println("---beging....------------------------------.");
     }
 
+    //前通知
     @Before("log()")
     public void beforeMethod(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
@@ -52,9 +56,11 @@ public class LogAspect {
         System.out.println("action名称 " + method + "  -參數" + e.toString());
     }
 
+
     /**
      * 環繞通知
      */
+    /*
     @Around("execution(* com.example.demo.api.*.*(..))")
     public void aroundApi(ProceedingJoinPoint pjp) throws Throwable {
         //=前置通知
@@ -65,5 +71,5 @@ public class LogAspect {
         System.out.println("action名称 " + pjp.getSignature().getName() + "  -return is" + res);
 
     }
-
+*/
 }

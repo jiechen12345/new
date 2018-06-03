@@ -69,73 +69,71 @@
                 <input type="text" id="key">
             </div>
             <div class="fnContainer">
-                <button id="btnR">查詢</button>
+                <button id="btnR">查詢ALL</button>
+                <button id="btnR2">查詢</button>
                 <button id="btnC">新增</button>
                 <button id="btnU">修改</button>
                 <button id="btnD">刪除</button>
             </div>
-            <!--
-                    <div class="fnContainer">
-                        <label>Api：</label>
-                        <select id="apiList">
-                            <option value="customerInfoProcessor">基本資料</option>
-                            <optgroup label="個人總覽">
-                                <option value="assetsOverviewProcessor">資產總覽</option>
-                                <option value="assetsDistributionProcessor">資產配置</option>
-                                <option value="savingAccountInfoProcessor">存款</option>
-                                <option value="fundSummaryProcessor">基金-總覽</option>
-                                <option value="fundOverviewProcessor">基金-概要</option>
-                                <option value="fundRedempProcessor">基金-贖回</option>
-                                <option value="etfSummaryProcessor">ETF-總覽</option>
-                                <option value="etfOverviewProcessor">ETF-概要</option>
-                                <option value="etfRedempProcessor">ETF-贖回</option>
-                                <option value="snBondSummaryProcessor">SN/Bond-總覽</option>
-                                <option value="snBondOverviewProcessor">SN/Bond-概要</option>
-                                <option value="snBondRedempProcessor">SN/Bond-贖回</option>
-                                <option value="insuranceProcessor">保險</option>
-                                <option value="goldenAccountSummaryProcessor">黃金存摺</option>
-                                <option value="goldenAccountDetailProcessor">黃金存摺明細</option>
-                                <option value="equityProcessor">Equity</option>
-                                <option value="structuredProdcutProcessor">SI</option>
-                                <option value="dciProcessor">DCI</option>
-                                <option value="dicDetailProcessor">DCI-到期查詢</option>
-                                <option value="fundDetailProcess">基金總攬明細合併</option>
-                                <option value="fundOverviewEsbProcessor">基金-概要（ESB）</option>
-                                <option value="etfOverviewEsbProcessor">ETF-概要（ESB）</option>
-                                <option value="snBondOverviewEsbProcessor">Bond-概要（ESB）</option>
-                                <option value="fundSummaryEsbProcessor">基金-總覽（ESB）</option>
-                                <option value="snBondSummaryEsbProcessor">Bond-總覽（ESB）</option>
-                                <option value="etfSummaryEsbProcessor">ETF-總覽（ESB）</option>
-                                <option value="fundRedeemEsbProcessor">基金-贖回（ESB）</option>
-                                <option value="etfRedeemEsbProcessor">ETF-贖回（ESB）</option>
-                                <option value="equityEsbProcessor">Equity（ESB）</option>
-                                <option value="roiPriodEsbProcessor">查詢投資帳戶總覽損益分析資料（ESB）</option>
-                                <option value="roiListEsbProcessor">查詢投資帳戶總覽目前持有部位（ESB）</option>
-                            </optgroup>
-
-                        </select>
-                    </div>
-                        -->
-            <div class="fnContainer">
-                <label>LastUpdated：</label>
-                <span id="labLastTime"></span>
-            </div>
-        </section>
-
-        <div class="viwer-container">
-            <div id="viwer">  </div>
-        </div>
-
     </div>
+    <!--
+            <div class="fnContainer">
+                <label>Api：</label>
+                <select id="apiList">
+                    <option value="customerInfoProcessor">基本資料</option>
+                    <optgroup label="個人總覽">
+                        <option value="assetsOverviewProcessor">資產總覽</option>
+                        <option value="assetsDistributionProcessor">資產配置</option>
+                        <option value="savingAccountInfoProcessor">存款</option>
+                        <option value="fundSummaryProcessor">基金-總覽</option>
+                        <option value="fundOverviewProcessor">基金-概要</option>
+                        <option value="fundRedempProcessor">基金-贖回</option>
+                        <option value="etfSummaryProcessor">ETF-總覽</option>
+                        <option value="etfOverviewProcessor">ETF-概要</option>
+                        <option value="etfRedempProcessor">ETF-贖回</option>
+                        <option value="snBondSummaryProcessor">SN/Bond-總覽</option>
+                        <option value="snBondOverviewProcessor">SN/Bond-概要</option>
+                        <option value="snBondRedempProcessor">SN/Bond-贖回</option>
+                        <option value="insuranceProcessor">保險</option>
+                        <option value="goldenAccountSummaryProcessor">黃金存摺</option>
+                        <option value="goldenAccountDetailProcessor">黃金存摺明細</option>
+                        <option value="equityProcessor">Equity</option>
+                        <option value="structuredProdcutProcessor">SI</option>
+                        <option value="dciProcessor">DCI</option>
+                        <option value="dicDetailProcessor">DCI-到期查詢</option>
+                        <option value="fundDetailProcess">基金總攬明細合併</option>
+                        <option value="fundOverviewEsbProcessor">基金-概要（ESB）</option>
+                        <option value="etfOverviewEsbProcessor">ETF-概要（ESB）</option>
+                        <option value="snBondOverviewEsbProcessor">Bond-概要（ESB）</option>
+                        <option value="fundSummaryEsbProcessor">基金-總覽（ESB）</option>
+                        <option value="snBondSummaryEsbProcessor">Bond-總覽（ESB）</option>
+                        <option value="etfSummaryEsbProcessor">ETF-總覽（ESB）</option>
+                        <option value="fundRedeemEsbProcessor">基金-贖回（ESB）</option>
+                        <option value="etfRedeemEsbProcessor">ETF-贖回（ESB）</option>
+                        <option value="equityEsbProcessor">Equity（ESB）</option>
+                        <option value="roiPriodEsbProcessor">查詢投資帳戶總覽損益分析資料（ESB）</option>
+                        <option value="roiListEsbProcessor">查詢投資帳戶總覽目前持有部位（ESB）</option>
+                    </optgroup>
+                </select>
+            </div>
+                -->
+    <div class="fnContainer">
+        <label>LastUpdated：</label>
+        <span id="labLastTime"></span>
+    </div>
+    </section>
+
+    <div class="viwer-container">
+        <div id="viwer">  </div>
+    </div>
+
+</div>
 </div>
 
 <div id="loadingMask" class="loading-mask"> </div>
 
 <script>
-
-
     (function (global) {
-
         var loadingMask = (function () {
             var $loadingMask = $('#loadingMask');
             return {
@@ -147,10 +145,8 @@
                 }
             };
         })();
-
         var $viwer = $('#viwer');
         var $lastTime = $('#labLastTime');
-
         //insert---------------------------------
         $('#btnC').on('click', function () {
             var name = $('#name').val();
@@ -158,8 +154,6 @@
             alert(id);
             alert(name);
 
-            //var lessons = $('#lessons').val();
-            //var lessons=[{"id":"1"},{"id":"2"}];
             //var lessons=["1","3"];
             var lessons=getLessons();
             alert(lessons);
@@ -172,7 +166,7 @@
                 dataType: 'json',
                 beforeSend: loadingMask.show,
                 complete: loadingMask.hide
-            }).done(function (  ) {
+            }).done(function (resp) {
                 $viwer.jsonViewer(resp, { collapsed: false, withQuotes: false });
                 $viwer.parent().animate({ scrollTop: 0 }, '500', 'swing');
                 var now = new Date();
@@ -180,18 +174,44 @@
             }).fail(function (xhr) {
                 $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
             })
-
         });
-
         //query----------------------------------
         $('#btnR').on('click', function () {
             var reqUrl = getUrl();
-            //alert("queryAll "+getUrl());
             $.ajax({
                 contentType: 'application/json; charset=UTF-8',
                 url: reqUrl,
                 data: '' ,
                 method: 'GET',
+                dataType: 'json',
+                beforeSend: loadingMask.show,
+                complete: loadingMask.hide
+            }).done(function (resp) {
+                $viwer.jsonViewer(resp, { collapsed: false, withQuotes: false });
+                $viwer.parent().animate({ scrollTop: 0 }, '500', 'swing');
+                var now = new Date();
+                $lastTime.text(now.toJSON());
+            }).fail(function (xhr) {
+                $viwer.jsonViewer(xhr.responseText, { collapsed: false, withQuotes: false });
+            })
+        });
+        //query2----------------------------------
+        $('#btnR2').on('click', function () {
+            var reqUrl = getUrl();
+            reqUrl+="/search";
+            var q_name = $('#q_name').val();
+            var q_id = $('#q_id').val();
+            var q_lessons=getQ_lessons();
+            var q_order=$('#order').val();
+            alert(q_id);
+            alert(q_name);
+            alert(q_lessons);
+            alert(q_order);
+            $.ajax({
+                contentType: 'application/json; charset=UTF-8',
+                url: reqUrl,
+                data: JSON.stringify({"id": q_id,"name": q_name,"lessons": q_lessons,"order":q_order}) ,
+                method: 'POST',
                 dataType: 'json',
                 beforeSend: loadingMask.show,
                 complete: loadingMask.hide
@@ -284,7 +304,7 @@
             //var api = $('#apiList').val();
             var reqUrl = '';
             //reqUrl += getDomain();
-            reqUrl += 'http://localhost:8080/teachers/' //+ api;
+            reqUrl += 'http://localhost:8088/teachers/' //+ api;
             //var now = new Date();
             //reqUrl += '/' + now.getTime().toString();
             return reqUrl;
@@ -323,6 +343,22 @@
             return arr;
         }
 
+        function getQ_lessons() {
+            var arr=[];
+            if(document.getElementById("q_lessons1").checked){
+                arr.push("1");
+            };
+            if(document.getElementById("q_lessons2").checked){
+                arr.push("2")
+            };
+            if(document.getElementById("q_lessons3").checked){
+                arr.push("3")
+            };
+            if(document.getElementById("q_lessons4").checked){
+                arr.push("4")
+            };
+            return arr;
+        }
     })(window);
     var app = new Vue({
         el:'#changCurr',
