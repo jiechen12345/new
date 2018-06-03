@@ -1,0 +1,112 @@
+﻿.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid gray;
+}
+
+.header {
+    padding: 5px;
+}
+
+.body {
+    padding-bottom: 10px;
+}
+
+.viwer-container {
+    height: 600px;
+    border-top: 1px dashed gray;
+    padding: 5px 0px 0px 15px;
+    font-size: 13px;
+    overflow-y: auto;
+}
+
+    .viwer-container div {
+        min-width: 100%;
+    }
+
+.title {
+    text-align: center;
+    font-weight: bolder;
+}
+
+.fnContainer {
+    padding: 5px 0px 5px 15px;
+}
+
+label {
+    display: inline-block;
+    text-align: right;
+    color: darkblue;
+    width: 150px;
+}
+
+button {
+    float: right;
+    background-color: gray;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+select {
+    width: 50%;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+
+.loading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display:none;
+}
+
+
+    .loading-mask::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.15);
+    }
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+
+.loading-mask::after {
+    content: "";
+    position: absolute;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent rgb(255, 255, 255) rgb(255, 255, 255);
+    border-radius: 50%;
+    width: 24px;
+    top: calc(50% - 12px);    height: 24px;
+
+    left: calc(50% - 12px);
+    animation: 2s linear 0s normal none infinite running spin;
+    filter: drop-shadow(0 0 2 rgba(0, 0, 0, 0.33));
+}
