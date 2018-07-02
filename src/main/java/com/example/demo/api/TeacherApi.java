@@ -17,6 +17,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -33,6 +34,15 @@ public class TeacherApi {
     private TeacherDao teacherDao;
     @Autowired
     private TeacherService teacherService;
+
+    @RequestMapping(value = "/success" )
+    public String success(Map<String,Object> map) {
+        LOGGER.debug("123");
+        LOGGER.info("123");
+        LOGGER.warn("789");
+        map.put("aa","aa");
+        return "success";
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     @Action("findAll")
